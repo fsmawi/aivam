@@ -1,0 +1,12 @@
+- une fois on click sur editer cela renvoie vers update et parsuite on crée une nouvelle règle update
+- dans l'interface update, mettre les champs (qui serotn défini après) en dépendence suivant la base de données.
+- changer le status check après une nouvelle entrée update (seulement les ligne affectées)
+- l'utilisateur normal ne voit que la partie export
+- modification des informations profile (par admin et par l'utilisateur lui même)
+- revoir le probleme traitement modeles du même nom prevenant de vp ou vul
+- implémentation nouvelles règles marque - modèle - segument premium + sport
+- lourdeur export
+
+- solution d'hebergement (prérequis):
+    dans nos serveurs
+    chez toyota

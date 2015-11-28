@@ -1,0 +1,54 @@
+.doprocess {
+    text-align: right;
+}
+
+.check-context {
+    height: 61px;
+    padding-top: 32px;
+}
+
+.clr{
+    clear: both;
+}
+.actions a{
+   cursor: pointer;
+}
+.actions span{
+    font-size: 19px;
+}
+
+.actions span.active{
+   color:green;
+}
+
+.modal-body p {
+    border: solid 1px #ccc;
+    text-transform: uppercase;
+}
+
+.modal-body p:hover {
+    border: solid 2px blue;
+}
+.modal-body p.active {
+    border: solid 1px green;
+}
+ 
+.modal-body {
+    position: relative;
+    padding: 20px;
+    height: 170px;
+    overflow-y: scroll;
+}
+
+.modal-title {
+    text-transform: uppercase;
+}
+
+.changes {
+    border-left: 1px solid #000;
+    margin-left: 100px;
+}
+
+.input-control {
+    cursor: pointer;
+}

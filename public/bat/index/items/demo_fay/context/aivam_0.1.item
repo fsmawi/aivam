@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<talendfile:ContextType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" confirmationNeeded="false" name="Default">
+  <contextParameter comment="" name="log_id" prompt="log_id?" promptNeeded="true" type="id_Integer" value="0"/>
+  <contextParameter comment="" name="file_brute" prompt="file_brute?" promptNeeded="true" type="id_String" value="input_aivam_brut.xls"/>
+</talendfile:ContextType>
