@@ -37,6 +37,7 @@ class Controller_Admin_Users extends Controller_Admin
 		if (Input::method() == 'POST')
 		{
 			$val = Model_User::validate('create');
+      $val->add('password', 'Password')->add_rule('required');
 
       $role = 50;
       if(Input::post('admin')) {
@@ -46,7 +47,7 @@ class Controller_Admin_Users extends Controller_Admin
 			if ($val->run())
 			{
 
-        if($this->validatePassword(Input::post('password')) && Input::post('password') == Input::post('password2')) {
+        if(Aivam_Util::validatePassword(Input::post('password')) && Input::post('password') == Input::post('password2')) {
             try {
                 Auth::create_user(Input::post('username'), Input::post('password'), Input::post('email'), $role);
                 Response::redirect('admin/users');
@@ -55,7 +56,7 @@ class Controller_Admin_Users extends Controller_Admin
             }
 
         }else {
-            if(!$this->validatePassword(Input::post('password'))) {
+            if(!Aivam_Util::validatePassword(Input::post('password'))) {
                 Session::set_flash('error', e('Invalid Password.'));
             }else {
                 Session::set_flash('error', e('Password <> Password2.'));
@@ -82,36 +83,80 @@ class Controller_Admin_Users extends Controller_Admin
 
 		if ($val->run())
 		{
-			Response::redirect('admin/users');
-		}
+      $user->username = $val->validated('username');
+      $user->email = $val->validated('email');
+      $user->group = $val->validated('group');
 
+      if(Input::post('new_password')) {
+
+        if(Aivam_Util::validatePassword(Input::post('new_password')) && Input::post('new_password') == Input::post('password2')) {
+
+          $new_password = Auth::reset_password($user->username);
+            try {
+                Auth::update_user(
+                          array(
+                              'email'        => Input::post('email'),
+                              'password'     => Input::post('new_password'),
+                              'old_password' => $new_password,
+                              'group'        => Input::post('admin')
+                          ), $user->username
+                      );
+
+
+                Session::set_flash('success', "Profile updated !");
+                Response::redirect('admin/users');
+
+            } catch (SimpleUserUpdateException $exc) {
+                 Session::set_flash('success', $exc->getMessage());
+            }
+        }else{
+            if(!Aivam_Util::validatePassword(Input::post('new_password'))) {
+                Session::set_flash('error', e('Invalid Password.'));
+            }else {
+                Session::set_flash('error', e('Passwords must match.'));
+            }
+        }
+
+      }else{
+
+        try {
+            Auth::update_user(
+                      array(
+                          'email' => Input::post('email'),
+                          'group' => Input::post('admin')
+                      ), $user->username
+                  );
+
+            Session::set_flash('success', "Profile updated !");
+            Response::redirect('admin/users');
+        } catch (SimpleUserUpdateException $exc) {
+             Session::set_flash('success', $exc->getMessage());
+        }
+      }
+
+
+		}
 		else
 		{
-//			if (Input::method() == 'POST')
-//			{
-//				$user->username = $val->validated('username');
-//				$user->password = $val->validated('password');
-//				$user->group = $val->validated('group');
-//				$user->email = $val->validated('email');
-//				$user->last_login = $val->validated('last_login');
-//				$user->login_hash = $val->validated('login_hash');
-//				$user->profile_fields = $val->validated('profile_fields');
-//
-//				Session::set_flash('error', $val->error());
-//			}
-//
-//			$this->template->set_global('user', $user, false);
+			if (Input::method() == 'POST')
+			{
+				$user->username = $val->validated('username');
+				$user->group = $val->validated('group');
+				$user->email = $val->validated('email');
+
+				Session::set_flash('error', $val->error());
+			}
+
 		}
+
+    $this->template->set_global('user', $user, false);
 
 		$this->template->title = "Users";
 		$this->template->content = View::forge('admin/users/edit');
 
 	}
 
-  public function action_edit_profile()
-  {
 
-  }
 	public function action_delete($id = null)
 	{
 		if ($user = Model_User::find($id))

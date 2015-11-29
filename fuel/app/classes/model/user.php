@@ -31,8 +31,8 @@ class Model_User extends \Orm\Model
 	{
 		$val = Validation::forge($factory);
 		$val->add_field('username', 'Username', 'required|max_length[50]');
-		$val->add_field('password', 'Password', 'required|max_length[255]');
 		$val->add_field('email', 'Email', 'required|valid_email|max_length[255]');
+		// $val->add_field('password', 'Password', 'required|max_length[255]');
 
 		return $val;
 	}

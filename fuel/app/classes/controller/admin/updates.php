@@ -32,9 +32,18 @@ class Controller_Admin_Updates extends Controller_Admin
 
 	}
 
-	public function action_create()
+	public function action_create($id=null)
 	{
 
+    if($id) {
+      $item = Model_Item::find($id);
+      $this->template->set_global('city', $item->city, false);
+      $this->template->set_global('make', $item->make, false);
+      $this->template->set_global('model', $item->model, false);
+      $this->template->set_global('segment', $item->segment, false);
+      $this->template->set_global('premium_segment', $item->premium_segment, false);
+      $this->template->set_global('body_type', $item->body_type, false);
+    }
 		if (Input::method() == 'POST')
 		{
 

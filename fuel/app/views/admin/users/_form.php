@@ -4,17 +4,17 @@
 
 		<div class="form-group">
 			<?php echo Form::label('Current Password', 'password', array('class'=>'control-label')); ?>
-			<?php echo Form::input('password', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Password')); ?>
+			<?php echo Form::password('password', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Password')); ?>
 		</div>
 
 		<div class="form-group">
 			<?php echo Form::label('New Password', 'new_password', array('class'=>'control-label')); ?>
-			<?php echo Form::input('new_password', '' , array('class' => 'col-md-4 form-control', 'placeholder'=>'Password')); ?>
+			<?php echo Form::password('new_password', '' , array('class' => 'col-md-4 form-control', 'placeholder'=>'Password')); ?>
 		</div>
 
     <div class="form-group">
 			<?php echo Form::label('Validate Password', 'password2', array('class'=>'control-label')); ?>
-			<?php echo Form::input('password2', '' , array('class' => 'col-md-4 form-control', 'placeholder'=>'Validate Password')); ?>
+			<?php echo Form::password('password2', '' , array('class' => 'col-md-4 form-control', 'placeholder'=>'Validate Password')); ?>
 		</div>
 		<div class="form-group">
 			<?php echo Form::label('Email', 'email', array('class'=>'control-label')); ?>

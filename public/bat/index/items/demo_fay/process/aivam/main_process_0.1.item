@@ -1071,7 +1071,7 @@
       <column comment="" key="false" length="10" name="nb_places" nullable="true" pattern="" sourceType="" type="id_Integer" originalLength="10" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="copyOfout02">
         <mapperTableEntries name="id" type="id_Long"/>

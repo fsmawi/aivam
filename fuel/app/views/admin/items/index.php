@@ -68,7 +68,7 @@
         <?php if($item['status'] == 'ok'): ?>
 				<?php echo Html::anchor('admin/items/view/'.$item['id'], 'View'); ?>
         <?php else: ?>
-        <?php echo Html::anchor('admin/updates/create', 'Edit'); ?>
+        <?php echo Html::anchor('admin/updates/create/'.$item['id'], 'Edit'); ?>
         <?php endif; ?>
 			</td>
 		</tr>

@@ -6,13 +6,13 @@
 		<div class="form-group">
 			<?php echo Form::label('Password', 'password', array('class'=>'control-label')); ?>
 
-				<?php echo Form::input('password', Input::post('password', ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Password')); ?>
+				<?php echo Form::password('password', Input::post('password', ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Password')); ?>
 
 		</div>
         <div class="form-group">
 			<?php echo Form::label('Validate Password', 'password2', array('class'=>'control-label')); ?>
 
-				<?php echo Form::input('password2', Input::post('password2', ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Validate Password')); ?>
+				<?php echo Form::password('password2', Input::post('password2', ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Validate Password')); ?>
 
 		</div>
 		<div class="form-group">

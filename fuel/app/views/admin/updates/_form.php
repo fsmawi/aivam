@@ -1,5 +1,5 @@
 <?php echo Form::open(array("class"=>"form-horizontal")); ?>
-  <!-- Conditions -->  
+  <!-- Conditions -->
   <div class="col-md-5">
 	<fieldset>
         <h3>Conditions</h3>
@@ -9,7 +9,7 @@
                 <span class="glyphicon glyphicon-plus input-control"></span>
                 <?php echo Form::input('year', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Year')); ?>
             </div>
-            
+
 		</div>
 		<div class="form-group">
             <div class="col-md-9">
@@ -22,7 +22,7 @@
             <div class="col-md-9">
             <?php echo Form::label('City', 'city', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
-				<?php echo Form::input('city', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'City')); ?>
+				<?php echo Form::input('city', isset($city)?$city:'', array('class' => 'col-md-4 form-control', 'placeholder'=>'City')); ?>
             </div>
             <div class="col-md-2 check-context actions">
                 <a class="newitem" data-item="city"><span class="glyphicon glyphicon-plus-sign"></span></a>
@@ -44,7 +44,7 @@
             <div class="col-md-9">
             <?php echo Form::label('Make', 'make', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
-				<?php echo Form::input('make', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Make')); ?>
+				<?php echo Form::input('make', isset($make)?$make:'', array('class' => 'col-md-4 form-control', 'placeholder'=>'Make')); ?>
             </div>
             <div class="col-md-2 check-context actions">
                 <a class="newitem" data-item="make"><span class="glyphicon glyphicon-plus-sign"></span></a>
@@ -52,10 +52,10 @@
             </div>
 		</div>
 		<div class="form-group">
-            <div class="col-md-9">			
+            <div class="col-md-9">
             <?php echo Form::label('Premium segment', 'premium_segment', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
-				<?php echo Form::input('premium_segment', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Premium segment')); ?>
+				<?php echo Form::input('premium_segment', isset($premium_segment)?$premium_segment:'', array('class' => 'col-md-4 form-control', 'placeholder'=>'Premium segment')); ?>
             </div>
             <div class="col-md-2 check-context actions">
                 <a class="newitem" data-item="premium_segment"><span class="glyphicon glyphicon-plus-sign"></span></a>
@@ -63,7 +63,7 @@
             </div>
 		</div>
 		<div class="form-group">
-            <div class="col-md-9">			
+            <div class="col-md-9">
             <?php echo Form::label('Model gnr', 'model_gnr', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
 				<?php echo Form::input('model_gnr', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Model gnr')); ?>
@@ -77,7 +77,7 @@
             <div class="col-md-9">
 			<?php echo Form::label('Model', 'model', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
-				<?php echo Form::input('model', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Model')); ?>
+				<?php echo Form::input('model', isset($model)?$model:'', array('class' => 'col-md-4 form-control', 'placeholder'=>'Model')); ?>
             </div>
             <div class="col-md-2 check-context actions">
                 <a class="newitem" data-item="model"><span class="glyphicon glyphicon-plus-sign"></span></a>
@@ -88,7 +88,7 @@
             <div class="col-md-9">
 			<?php echo Form::label('Segment', 'segment', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
-				<?php echo Form::input('segment', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Segment')); ?>
+				<?php echo Form::input('segment', isset($segment)?$segment:'', array('class' => 'col-md-4 form-control', 'placeholder'=>'Segment')); ?>
             </div>
             <div class="col-md-2 check-context actions">
                 <a class="newitem" data-item="segment"><span class="glyphicon glyphicon-plus-sign"></span></a>
@@ -107,7 +107,7 @@
             </div>
 		</div>
 		<div class="form-group">
-            <div class="col-md-9">			
+            <div class="col-md-9">
             <?php echo Form::label('Pc cv', 'pc_cv', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
 				<?php echo Form::input('pc_cv', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Pc cv')); ?>
@@ -168,7 +168,7 @@
             <div class="col-md-9">
 			<?php echo Form::label('Body type', 'body_type', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
-				<?php echo Form::input('body_type', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Body type')); ?>
+				<?php echo Form::input('body_type', isset($body_type)?$body_type:'', array('class' => 'col-md-4 form-control', 'placeholder'=>'Body type')); ?>
             </div>
             <div class="col-md-2 check-context actions">
                 <a class="newitem" data-item="body_type"><span class="glyphicon glyphicon-plus-sign"></span></a>
@@ -202,7 +202,7 @@
                 <span class="glyphicon glyphicon-plus input-control"></span>
 				<?php echo Form::input('year2', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Year')); ?>
             </div>
-            
+
 		</div>
 		<div class="form-group">
             <div class="col-md-9">
@@ -245,7 +245,7 @@
             </div>
 		</div>
 		<div class="form-group">
-            <div class="col-md-9">			
+            <div class="col-md-9">
             <?php echo Form::label('Premium segment', 'premium_segment2', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
 				<?php echo Form::input('premium_segment2', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Premium segment')); ?>
@@ -256,7 +256,7 @@
             </div>
 		</div>
 		<div class="form-group">
-            <div class="col-md-9">			
+            <div class="col-md-9">
             <?php echo Form::label('Model gnr', 'model_gnr2', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
 				<?php echo Form::input('model_gnr2', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Model gnr')); ?>
@@ -300,7 +300,7 @@
             </div>
 		</div>
 		<div class="form-group">
-            <div class="col-md-9">			
+            <div class="col-md-9">
             <?php echo Form::label('Pc cv', 'pc_cv2', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
 				<?php echo Form::input('pc_cv2', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Pc cv')); ?>
@@ -348,7 +348,7 @@
 		</div>
 		<div class="form-group">
             <div class="col-md-9">
-			<?php echo Form::label('Origine', 'origine2', array('class'=>'control-label')); ?>  
+			<?php echo Form::label('Origine', 'origine2', array('class'=>'control-label')); ?>
                 <span class="glyphicon glyphicon-plus input-control"></span>
 				<?php echo Form::input('origine2', '', array('class' => 'col-md-4 form-control', 'placeholder'=>'Origine')); ?>
             </div>
@@ -388,9 +388,9 @@
   <!-- end changes -->
   <div class="form-group">
         <label class='control-label'>&nbsp;</label>
-        <?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>		
+        <?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>
     </div>
-  
+
 <?php echo Form::close(); ?>
 <div class="clr"></div>
 
@@ -405,7 +405,7 @@
                 <p>One fine body&hellip;</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>       
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

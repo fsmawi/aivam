@@ -6,6 +6,7 @@ class Controller_Admin_profile extends Controller_Admin
   {
     $user = Model_User::find($this->current_user->id);
     $val = Model_User::validate('edit');
+    $val->add('password', 'Password')->add_rule('required');
 
     if ($val->run())
     {
@@ -19,7 +20,7 @@ class Controller_Admin_profile extends Controller_Admin
         }else{
           if(Input::post('new_password')) {
 
-              if($this->validatePassword(Input::post('new_password')) && Input::post('new_password') == Input::post('password2')) {
+              if(Aivam_Util::validatePassword(Input::post('new_password')) && Input::post('new_password') == Input::post('password2')) {
                   try {
                       Auth::update_user(
                                 array(
@@ -40,7 +41,7 @@ class Controller_Admin_profile extends Controller_Admin
                        Session::set_flash('success', $exc->getMessage());
                   }
               }else{
-                  if(!$this->validatePassword(Input::post('new_password'))) {
+                  if(!Aivam_Util::validatePassword(Input::post('new_password'))) {
                       Session::set_flash('error', e('Invalid Password.'));
                   }else {
                       Session::set_flash('error', e('Passwords must match.'));
@@ -86,16 +87,4 @@ class Controller_Admin_profile extends Controller_Admin
     $this->template->content = View::forge('admin/users/edit_profile');
   }
 
-  public function validatePassword($password) {
-
-      $uppercase = preg_match('@[A-Z]@', $password);
-      $lowercase = preg_match('@[a-z]@', $password);
-      $number    = preg_match('@[0-9]@', $password);
-
-      if(!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
-        return false;
-      }else{
-        return true;
-      }
-  }
 }
