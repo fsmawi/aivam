@@ -56,6 +56,17 @@ $(document).ready(function() {
     // });
 });
 
+CUSTOM_FIELD = {
+    'premium_segment':'make:model',
+    'model':'make',
+    'segment': 'make:model',
+    'body_type':'make:model',
+    'premium_segment2':'make2:model2',
+    'model2':'make2',
+    'segment2':'make2:model2',
+    'body_type2':'make2:model2'
+};
+
 ITEM_MAPPING = {
     'year':'year',
     'month':'month',
@@ -65,7 +76,7 @@ ITEM_MAPPING = {
     'price_class':'price_class',
     'city':'citie',
     'group':'group',
-    'make':'marque',
+    'make':'make',
     'premium_segment':'premium_segment',
     'model_gnr':'model_gnr',
     'model':'model',
@@ -84,7 +95,7 @@ ITEM_MAPPING = {
     'price_class2':'price_class',
     'city2':'citie',
     'group2':'group',
-    'make2':'marque',
+    'make2':'make',
     'premium_segment2':'premium_segment',
     'model_gnr2':'model_gnr',
     'model2':'model',
@@ -98,8 +109,10 @@ ITEM_MAPPING = {
 };
 
 function addItem(model, value) {
+
+    url = "/admin/rest/"+ITEM_MAPPING[model]+"s/"+ITEM_MAPPING[model]+".json";
     $.ajax({
-            url: "/admin/rest/"+ITEM_MAPPING[model]+"s/"+ITEM_MAPPING[model]+".json",
+            url: url,
             data: 'title=' + value,
             type: 'POST',
             success: function(data) {
@@ -113,8 +126,24 @@ function addItem(model, value) {
 }
 
 function getItems(model, callback) {
+
+    url = '/admin/rest/'+ITEM_MAPPING[model]+'s/list.json';
+
+
+    if(CUSTOM_FIELD[model] != undefined) {
+        url += "?";
+        var custom_field = CUSTOM_FIELD[model];
+        var temp = custom_field.split(":");
+
+        for(var i=0; i < temp.length; i++) {
+            if($('#form_'+ temp[i]).length && $('#form_'+ temp[i]).val() != "") {
+                url += ITEM_MAPPING[temp[i]] + "=" + $('#form_'+ temp[i]).val() + "&";
+            }
+        }
+    }
+
     $.ajax({
-            url: '/admin/rest/'+ITEM_MAPPING[model]+'s/list.json',
+            url: url,
             type: 'GET',
             success: function(data) {
                 if (data) {

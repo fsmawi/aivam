@@ -57,10 +57,10 @@ class Controller_Admin_Updates extends Controller_Admin
                     }
                 }
             }
-           if(count($conditions) < 1 && count($changes) < 1) {
+
+           if(empty($conditions) || empty($changes)) {
                Session::set_flash('error', "Minimum 1 condition and 1 action of change !");
            }else{
-
                $update = new Model_Update();
                $update->conditions = serialize($conditions);
                $update->changes = serialize($changes);
