@@ -11,7 +11,7 @@ class Controller_Admin_Export extends Controller_Admin {
 
         if(isset($_POST) && count($_POST)) {
 
-            $exporter = new ExportDataExcel('browser', 'export_aivam.xlsx');
+            $exporter = new ExportDataExcel('browser', 'export_aivam.xls');
             $exporter->initialize(); // starts streaming data to web browser
 
             $whereClause = "";

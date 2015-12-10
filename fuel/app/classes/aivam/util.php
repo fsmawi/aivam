@@ -39,7 +39,7 @@ class Aivam_Util {
 
         $updates = Model_Update::find('all');
         foreach ($updates as $value) {
-            processException($value->id);
+            Aivam_Util::processException($value->id);
         }
     }
 

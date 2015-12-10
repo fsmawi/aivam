@@ -36,43 +36,43 @@ class Controller_Admin_Updates extends Controller_Admin
 	{
 
     if($id) {
-      $item = Model_Item::find($id);
-      $this->template->set_global('city', $item->city, false);
-      $this->template->set_global('make', $item->make, false);
-      $this->template->set_global('model', $item->model, false);
-      $this->template->set_global('segment', $item->segment, false);
-      $this->template->set_global('premium_segment', $item->premium_segment, false);
-      $this->template->set_global('body_type', $item->body_type, false);
+        $item = Model_Item::find($id);
+        $this->template->set_global('city', $item->city, false);
+        $this->template->set_global('make', $item->make, false);
+        $this->template->set_global('model', $item->model, false);
+        $this->template->set_global('segment', $item->segment, false);
+        $this->template->set_global('premium_segment', $item->premium_segment, false);
+        $this->template->set_global('body_type', $item->body_type, false);
     }
+
 		if (Input::method() == 'POST')
 		{
-
-            $conditions = $changes = array();
-            foreach ($_POST as $key => $value) {
-                if(trim($value) != '' && $key != 'submit') {
-                    if(strpos($key, "2")) {
-                        $changes[rtrim($key, "2")] = trim($value);
-                    }else{
-                        $conditions[$key] = trim($value);
-                    }
+        $conditions = $changes = array();
+        foreach ($_POST as $key => $value) {
+            if(trim($value) != '' && $key != 'submit') {
+                if(strpos($key, "2")) {
+                    $changes[rtrim($key, "2")] = trim($value);
+                }else{
+                    $conditions[$key] = trim($value);
                 }
             }
+        }
 
-           if(empty($conditions) || empty($changes)) {
-               Session::set_flash('error', "Minimum 1 condition and 1 action of change !");
-           }else{
-               $update = new Model_Update();
-               $update->conditions = serialize($conditions);
-               $update->changes = serialize($changes);
-               $update->save();
+       if(empty($conditions) || empty($changes)) {
+           Session::set_flash('error', "Minimum 1 condition and 1 action of change !");
+       }else{
+           $update = new Model_Update();
+           $update->conditions = serialize($conditions);
+           $update->changes = serialize($changes);
+           $update->save();
 
-               $log = Model_Log::find('last', array('order_by' => array('created_at' => 'desc')));
+           // $log = Model_Log::find('last', array('order_by' => array('created_at' => 'desc')));
 
-               Aivam_Util::processException($update->id, $log->id);
+           Aivam_Util::processException($update->id);
 
-               Session::set_flash('success', "New exception added !");
-               Response::redirect('admin/updates');
-           }
+           Session::set_flash('success', "New exception added !");
+           Response::redirect('admin/updates');
+       }
 
 		}
 
