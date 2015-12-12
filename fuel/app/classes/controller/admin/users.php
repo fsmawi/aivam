@@ -98,7 +98,7 @@ class Controller_Admin_Users extends Controller_Admin
                               'email'        => Input::post('email'),
                               'password'     => Input::post('new_password'),
                               'old_password' => $new_password,
-                              'group'        => Input::post('admin')
+                              'group'        => Input::post('admin')?Input::post('admin'):50
                           ), $user->username
                       );
 
@@ -123,7 +123,7 @@ class Controller_Admin_Users extends Controller_Admin
             Auth::update_user(
                       array(
                           'email' => Input::post('email'),
-                          'group' => Input::post('admin')
+                          'group' => Input::post('admin')?Input::post('admin'):50
                       ), $user->username
                   );
 
