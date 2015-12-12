@@ -36,7 +36,8 @@ class Controller_Admin_Export extends Controller_Admin {
                     'origine',
                     'body_type',
                     'rsp',
-                    'price_class'
+                    'price_class',
+                    'dynamique'
                 ));
             for ($i=2006; $i <= $current_year; $i++) {
                 if(isset($_POST['month_'.$i]) && count($_POST['month_'.$i])) {
@@ -72,7 +73,8 @@ class Controller_Admin_Export extends Controller_Admin {
                             Aivam_Util::trueValue($value['origine']),
                             Aivam_Util::trueValue($value['body_type']),
                             Aivam_Util::trueValue($value['rsp']),
-                            Aivam_Util::trueValue($value['price_class'])
+                            Aivam_Util::trueValue($value['price_class']),
+                            Aivam_Util::trueValue($value['dynamique'])
                         ));
                     }
 

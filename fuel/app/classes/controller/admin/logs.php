@@ -28,7 +28,6 @@ class Controller_Admin_Logs extends Controller_Admin {
 
 
         if (Input::method() == 'POST') {
-
             // Upload::process($config);
 
             // if there are any valid files
@@ -45,20 +44,21 @@ class Controller_Admin_Logs extends Controller_Admin {
                 $log->user_id = $this->current_user->id;
                 $log->number = 0;
                 $log->year = Input::post('year');
-                $log->month = Input::post('month');
+                $log->month = implode('-', Input::post('month'));
                 $log->status = 'check';
                 $log->save();
 
                 ob_start();
 
-                $return = system("java -Xms256M -Xmx1024M -cp bat/lib/dom4j-1.6.1.jar;bat/lib/jxl.jar;bat/lib/mysql-connector-java-5.1.30-bin.jar;bat/lib/systemRoutines.jar;bat/lib/userRoutines.jar;.;bat/index/index_0_1.jar;bat/index/main_process_0_1.jar;bat/index/model_11_0_1.jar;bat/index/model_6_0_1.jar;bat/index/model_13_0_1.jar;bat/index/model_9_0_1.jar;bat/index/models_0_1.jar;bat/index/model_7_0_1.jar;bat/index/model_0_0_1.jar;bat/index/model_3_0_1.jar;bat/index/model_vp_vul_0_1.jar;bat/index/group_0_1.jar;bat/index/model_5_0_1.jar;bat/index/model_delta_0_1.jar;bat/index/model_10_0_1.jar;bat/index/model_8_0_1.jar;bat/index/model_2_0_1.jar;bat/index/premium_segment_0_1.jar;bat/index/model_4_0_1.jar;bat/index/model_0_gnr_0_1.jar;bat/index/origine_0_1.jar;bat/index/model_12_0_1.jar;bat/index/model_1_0_1.jar; demo_fay.index_0_1.index --context_param log_id=".$log->id." --context_param file_brute=".$file_input." %*  2>&1",$output) ;
+                // $return = system("java -Xms256M -Xmx1024M -cp bat/lib/dom4j-1.6.1.jar;bat/lib/jxl.jar;bat/lib/mysql-connector-java-5.1.30-bin.jar;bat/lib/systemRoutines.jar;bat/lib/userRoutines.jar;.;bat/index/index_0_1.jar;bat/index/main_process_0_1.jar;bat/index/model_11_0_1.jar;bat/index/model_6_0_1.jar;bat/index/model_13_0_1.jar;bat/index/model_9_0_1.jar;bat/index/models_0_1.jar;bat/index/model_7_0_1.jar;bat/index/model_0_0_1.jar;bat/index/model_3_0_1.jar;bat/index/model_vp_vul_0_1.jar;bat/index/group_0_1.jar;bat/index/model_5_0_1.jar;bat/index/model_delta_0_1.jar;bat/index/model_10_0_1.jar;bat/index/model_8_0_1.jar;bat/index/model_2_0_1.jar;bat/index/premium_segment_0_1.jar;bat/index/model_4_0_1.jar;bat/index/model_0_gnr_0_1.jar;bat/index/origine_0_1.jar;bat/index/model_12_0_1.jar;bat/index/model_1_0_1.jar; demo_fay.index_0_1.index --context_param log_id=".$log->id." --context_param file_brute=".$file_input." %*  2>&1",$output) ;
+                $return = system("java -Xms256M -Xmx1024M -cp bat/lib/dom4j-1.6.1.jar;bat/lib/jxl.jar;bat/lib/mysql-connector-java-5.1.30-bin.jar;bat/lib/systemRoutines.jar;bat/lib/userRoutines.jar;.;bat/index/index_0_1.jar;bat/index/main_process_0_1.jar;bat/index/model_11_0_1.jar;bat/index/model_6_0_1.jar;bat/index/model_13_0_1.jar;bat/index/model_9_0_1.jar;bat/index/models_0_1.jar;bat/index/model_7_0_1.jar;bat/index/premium_sport_0_1.jar;bat/index/model_0_0_1.jar;bat/index/model_3_0_1.jar;bat/index/model_vp_vul_0_1.jar;bat/index/group_0_1.jar;bat/index/model_5_0_1.jar;bat/index/model_delta_0_1.jar;bat/index/model_10_0_1.jar;bat/index/model_8_0_1.jar;bat/index/model_2_0_1.jar;bat/index/model_4_0_1.jar;bat/index/model_0_gnr_0_1.jar;bat/index/origine_0_1.jar;bat/index/premium_segment2_0_1.jar;bat/index/model_12_0_1.jar;bat/index/model_1_0_1.jar; aivam.index_0_1.index --context_param log_id=".$log->id." --context_param file_brute=".$file_input." %*  2>&1",$output) ;
 
                 $return = ob_get_contents();
 
                 ob_end_clean();
 
                 if(!$return) {
-                    echo $output;
+                    Session::set_flash('error', $output);
                 }
 
                 $log->status = $this->checkLogStatus($log->id);

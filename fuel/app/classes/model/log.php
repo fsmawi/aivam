@@ -48,7 +48,7 @@ class Model_Log extends \Orm\Model
 		$val = Validation::forge($factory);
 		$val->add_field('user_id', 'User Id', 'required|valid_string[numeric]');
 		$val->add_field('year', 'Year', 'required|valid_string[numeric]');
-		$val->add_field('month', 'Month', 'required|valid_string[numeric]');
+		$val->add_field('month', 'Month', 'required');
 		$val->add_field('date', 'Date', 'required');
 		$val->add_field('number', 'Number', 'required|valid_string[numeric]');
 		$val->add_field('status', 'Status', 'required|max_length[10]');

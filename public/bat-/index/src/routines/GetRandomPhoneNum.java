@@ -14,10 +14,35 @@ public class GetRandomPhoneNum {
      * {example} GetPhone() # 0123456789.
      */
     public static String GetPhone() {
-    	String Tel="0";
-    	Tel=Tel.concat(String.valueOf(Math.round(routines.Numeric.random(1,6))));
+    	String Tel="";    	
+    	int[] anArray;
+    	int tmp;
+    	Boolean flag;
+    	anArray = new int[10];
+    	anArray[0] = 0;
+    	anArray[1] = 0;
+    	anArray[2] = 0;
+    	anArray[3] = 0;
+    	anArray[4] = 0;
+    	anArray[5] = 0;
+    	anArray[6] = 0;
+    	anArray[7] = 0;
+    	anArray[8] = 0;
+    	anArray[9] = 0;
+    	
     	for(int i=0;i<8;i++){
-    		Tel=Tel.concat(String.valueOf(Math.round(routines.Numeric.random(0,9))));
+   		
+    		do {
+    			flag = false;
+	    		tmp = Math.round(routines.Numeric.random(0,9));
+	    		if(anArray[tmp] < 1) {
+	    			anArray[tmp]++;
+	    			Tel = Tel.concat(String.valueOf(tmp));
+	    		}else{
+	    			flag = true;
+	    		}
+    		}while(flag);
+    		    		
     	}
     	return Tel;    	
 

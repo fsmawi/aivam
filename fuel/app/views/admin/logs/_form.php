@@ -45,7 +45,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <label class="checkbox-inline sort-by">Mois </label>
-                            <select name="month" class="form-control" id="sort-liste">
+                            <select name="month[]" class="form-control" id="sort-liste" multiple="multiple">
                                 <?php
                                 for ($j=1; $j <= 12; $j++):
                                 ?>
