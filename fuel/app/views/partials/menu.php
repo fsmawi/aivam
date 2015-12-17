@@ -8,8 +8,16 @@
 </li>
 <?php endif;?>
 <?php if ($current_user_group == 'Administrators') : ?>
-<li class="<?php echo (Uri::segment(2) == 'logs' && (Uri::segment(3) == 'create'))? 'active' : '' ?>">
-    <?php echo Html::anchor('admin/logs/create', 'Traitement') ?>
+<li class="dropdown <?php echo (Uri::segment(2) == 'logs')? 'active' : '' ?>">
+    <?php echo Html::anchor('#', "Import", array('class' => 'dropdown-toggle', 'data-toggle'=> 'dropdown')) ?>
+    <ul class="dropdown-menu">
+        <li class="<?php echo (Uri::segment(2) == 'logs' && (Uri::segment(3) == 'create'))? 'active' : '' ?>">
+            <?php echo Html::anchor('admin/logs/create', 'Fichier brute') ?>
+        </li>
+        <li class="<?php echo (Uri::segment(2) == 'logs' && (Uri::segment(3) == 'create2'))? 'active' : '' ?>">
+            <?php echo Html::anchor('admin/logs/create2', 'Fichier traité') ?>
+        </li>
+    </ul>
 </li>
 <?php endif;?>
 <li class="<?php echo Uri::segment(2) == 'export' ? 'active' : '' ?>">

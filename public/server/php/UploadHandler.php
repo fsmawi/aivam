@@ -530,6 +530,7 @@ class UploadHandler
             $index, $content_range) {
         $name = $this->trim_file_name($file_path, $name, $size, $type, $error,
             $index, $content_range);
+        $name = str_replace(' ', '_', $name);
         return $this->get_unique_filename(
             $file_path,
             $this->fix_file_extension($file_path, $name, $size, $type, $error,

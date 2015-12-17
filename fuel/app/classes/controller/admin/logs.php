@@ -26,18 +26,10 @@ class Controller_Admin_Logs extends Controller_Admin {
 
         $data['current_year'] = intval(date('Y'));
 
-
         if (Input::method() == 'POST') {
-            // Upload::process($config);
 
-            // if there are any valid files
-            // if (Upload::is_valid()) {
             if (Input::post('fichier_brute')) {
-                // save them according to the config
-                // Upload::save();
 
-                // $arr = Upload::get_files();
-                // $file_input =  $arr[0]['saved_as'];
                 $file_input = Input::post('fichier_brute');
 
                 $log = new Model_Log();
@@ -50,7 +42,6 @@ class Controller_Admin_Logs extends Controller_Admin {
 
                 ob_start();
 
-                // $return = system("java -Xms256M -Xmx1024M -cp bat/lib/dom4j-1.6.1.jar;bat/lib/jxl.jar;bat/lib/mysql-connector-java-5.1.30-bin.jar;bat/lib/systemRoutines.jar;bat/lib/userRoutines.jar;.;bat/index/index_0_1.jar;bat/index/main_process_0_1.jar;bat/index/model_11_0_1.jar;bat/index/model_6_0_1.jar;bat/index/model_13_0_1.jar;bat/index/model_9_0_1.jar;bat/index/models_0_1.jar;bat/index/model_7_0_1.jar;bat/index/model_0_0_1.jar;bat/index/model_3_0_1.jar;bat/index/model_vp_vul_0_1.jar;bat/index/group_0_1.jar;bat/index/model_5_0_1.jar;bat/index/model_delta_0_1.jar;bat/index/model_10_0_1.jar;bat/index/model_8_0_1.jar;bat/index/model_2_0_1.jar;bat/index/premium_segment_0_1.jar;bat/index/model_4_0_1.jar;bat/index/model_0_gnr_0_1.jar;bat/index/origine_0_1.jar;bat/index/model_12_0_1.jar;bat/index/model_1_0_1.jar; demo_fay.index_0_1.index --context_param log_id=".$log->id." --context_param file_brute=".$file_input." %*  2>&1",$output) ;
                 $return = system("java -Xms256M -Xmx1024M -cp bat/lib/dom4j-1.6.1.jar;bat/lib/jxl.jar;bat/lib/mysql-connector-java-5.1.30-bin.jar;bat/lib/systemRoutines.jar;bat/lib/userRoutines.jar;.;bat/index/index_0_1.jar;bat/index/main_process_0_1.jar;bat/index/model_11_0_1.jar;bat/index/model_6_0_1.jar;bat/index/model_13_0_1.jar;bat/index/model_9_0_1.jar;bat/index/models_0_1.jar;bat/index/model_7_0_1.jar;bat/index/premium_sport_0_1.jar;bat/index/model_0_0_1.jar;bat/index/model_3_0_1.jar;bat/index/model_vp_vul_0_1.jar;bat/index/group_0_1.jar;bat/index/model_5_0_1.jar;bat/index/model_delta_0_1.jar;bat/index/model_10_0_1.jar;bat/index/model_8_0_1.jar;bat/index/model_2_0_1.jar;bat/index/model_4_0_1.jar;bat/index/model_0_gnr_0_1.jar;bat/index/origine_0_1.jar;bat/index/premium_segment2_0_1.jar;bat/index/model_12_0_1.jar;bat/index/model_1_0_1.jar; aivam.index_0_1.index --context_param log_id=".$log->id." --context_param file_brute=".$file_input." %*  2>&1",$output) ;
 
                 $return = ob_get_contents();
@@ -80,7 +71,51 @@ class Controller_Admin_Logs extends Controller_Admin {
             }
         }
 
-        $this->template->title = "Logs";
+        $this->template->title = "Fichier brute";
+        $this->template->content = View::forge('admin/logs/create', $data);
+    }
+
+    public function action_create2() {
+
+        $data['current_year'] = intval(date('Y'));
+
+        if (Input::method() == 'POST') {
+
+            if (Input::post('fichier_brute')) {
+
+                $file_input = Input::post('fichier_brute');
+
+                $log = new Model_Log();
+                $log->user_id = $this->current_user->id;
+                $log->number = 0;
+                $log->year = Input::post('year');
+                $log->month = implode('-', Input::post('month'));
+                $log->status = 'treated';
+                $log->save();
+
+                ob_start();
+
+                $return = system("java -Xms256M -Xmx1024M -cp bat/lib/dom4j-1.6.1.jar;bat/lib/jxl.jar;bat/lib/mysql-connector-java-5.1.30-bin.jar;bat/lib/systemRoutines.jar;bat/lib/userRoutines.jar;.;bat/traited_file/traited_file_0_1.jar; aivam.traited_file_0_1.traited_file --context_param log_id=".$log->id." --context_param file_brute=".$file_input." %*  2>&1",$output) ;
+                $return = ob_get_contents();
+
+                ob_end_clean();
+
+                if(!$return) {
+                    Session::set_flash('error', $output);
+                }
+
+                $files = glob('files/*');
+
+                foreach($files as $file){
+                  if(is_file($file))
+                    unlink($file);
+                }
+
+                Response::redirect('admin/items/list/'.$log->id);
+            }
+        }
+
+        $this->template->title = "Fichier traité";
         $this->template->content = View::forge('admin/logs/create', $data);
     }
 
