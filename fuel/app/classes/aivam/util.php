@@ -14,7 +14,7 @@ class Aivam_Util {
 
         $condition_set = "1=1";
         foreach ($conditions as $key=>$value) {
-            $condition_set .= " AND $key = '".$value."'";
+            $condition_set .= " AND `$key` = '".$value."'";
         }
 
         if(!is_null($logId)) {
@@ -23,7 +23,7 @@ class Aivam_Util {
 
         $change_set = "";
         foreach ($changes as $key=>$value) {
-            $change_set .= " $key = '".$value."',";
+            $change_set .= " `$key` = '".$value."',";
         }
         $change_set .= " status = 'ok',";
 
@@ -31,7 +31,7 @@ class Aivam_Util {
 
         $query = "UPDATE `items` SET ".$change_set." WHERE ".$condition_set;
 
-       DB::query($query)->execute();
+        DB::query($query)->execute();
 
     }
 

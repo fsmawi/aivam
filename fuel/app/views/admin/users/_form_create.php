@@ -24,7 +24,7 @@
         <div class="form-group">
 			<?php echo Form::label('Admin', 'admin', array('class'=>'control-label')); ?>
 
-				<?php echo Form::checkbox('admin', 100, ($user->group == 100)?true:false); ?>
+				<?php echo Form::checkbox('admin', 100, (isset($user) && $user->group == 100)?true:false); ?>
 
 		</div>
 		<div class="form-group">

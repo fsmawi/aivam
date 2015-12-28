@@ -43,6 +43,23 @@ class Controller_Admin_Updates extends Controller_Admin
         $this->template->set_global('segment', $item->segment, false);
         $this->template->set_global('premium_segment', $item->premium_segment, false);
         $this->template->set_global('body_type', $item->body_type, false);
+        
+        $this->template->set_global('year', $item->year, false);
+        $this->template->set_global('month', $item->month, false);
+        $this->template->set_global('group', $item->group, false);
+        $this->template->set_global('model_gnr', $item->model_gnr, false);
+        $this->template->set_global('ckd_cbu', $item->ckd_cbu, false);
+        $this->template->set_global('pc_cv', $item->pc_cv, false);
+        
+        $this->template->set_global('engine_type', $item->engine_type, false);
+        $this->template->set_global('type', $item->type, false);
+        $this->template->set_global('displacement', $item->displacement, false);
+        $this->template->set_global('sales', $item->sales, false);
+        $this->template->set_global('origine', $item->origine, false);
+        $this->template->set_global('rsp', $item->rsp, false);
+        $this->template->set_global('price_class', $item->price_class, false);
+
+
     }
 
 		if (Input::method() == 'POST')
