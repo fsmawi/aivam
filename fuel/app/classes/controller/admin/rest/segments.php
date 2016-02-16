@@ -15,6 +15,14 @@ class Controller_Admin_Rest_Segments extends Controller_Rest
             $query->where('model', Input::get('model'));
         }
 
+        if(Input::get('premium_segment')) {
+            $query->where('premium_segment', Input::get('premium_segment'));
+        }
+
+        if(Input::get('body_type')) {
+            $query->where('body_type', Input::get('body_type'));
+        }
+
         $items = $query->distinct(true)
                        ->order_by('segment','asc')
                        ->execute();

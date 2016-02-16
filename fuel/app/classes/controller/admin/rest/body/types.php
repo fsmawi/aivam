@@ -17,6 +17,14 @@ class Controller_Admin_Rest_Body_Types extends Controller_Rest
             $query->where('model', Input::get('model'));
         }
 
+        if(Input::get('segment')) {
+            $query->where('segment', Input::get('segment'));
+        }
+
+        if(Input::get('premium_segment')) {
+            $query->where('premium_segment', Input::get('premium_segment'));
+        }
+
         $items = $query->where('body_type', '!=', "0")
                        ->where('body_type', '!=', "")
                        ->distinct(true)

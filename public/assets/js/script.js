@@ -57,14 +57,16 @@ $(document).ready(function() {
 });
 
 CUSTOM_FIELD = {
-    'premium_segment':'make:model',
-    'model':'make',
-    'segment': 'make:model',
-    'body_type':'make:model',
-    'premium_segment2':'make2:model2',
-    'model2':'make2',
-    'segment2':'make2:model2',
-    'body_type2':'make2:model2'
+    'premium_segment':'body_type:segment:make:model',
+    'model':'body_type:segment:make:premium_segment',
+    'make':'body_type:segment:model:premium_segment',
+    'segment': 'body_type:make:model:premium_segment',
+    'body_type':'segment:make:model:premium_segment',
+    'premium_segment2':'body_type2:segment2:make2:model2',
+    'model2':'body_type2:segment2:make2:premium_segment2',
+    'make2':'body_type2:segment2:model2:premium_segment2',
+    'segment2': 'body_type2:make2:model2:premium_segment2',
+    'body_type2':'segment2:make2:model2:premium_segment2'
 };
 
 ITEM_MAPPING = {
@@ -129,11 +131,14 @@ function getItems(model, callback) {
 
     url = '/admin/rest/'+ITEM_MAPPING[model]+'s/list.json';
 
+    console.log(model, url);
 
     if(CUSTOM_FIELD[model] != undefined) {
         url += "?";
         var custom_field = CUSTOM_FIELD[model];
         var temp = custom_field.split(":");
+
+        console.log(custom_field, temp);
 
         for(var i=0; i < temp.length; i++) {
             if($('#form_'+ temp[i]).length && $('#form_'+ temp[i]).val() != "") {
